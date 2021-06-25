@@ -11,4 +11,4 @@ WORKDIR $HOME
 COPY requirements.txt .
 COPY mailer.py .
 RUN pip3 install -r requirements.txt --user
-CMD ['mailer.py']
+CMD ["/home/mailer/mailer.py"]
