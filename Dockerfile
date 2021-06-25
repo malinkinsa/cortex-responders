@@ -13,4 +13,4 @@ WORKDIR $HOME
 COPY requirements.txt .
 COPY mailer.py .
 RUN pip3 install -r requirements.txt --user
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["python3 mailer.py"]
