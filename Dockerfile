@@ -6,9 +6,11 @@ RUN apk add --update sudo
 RUN adduser -D $USER \
         && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
         && chmod 0440 /etc/sudoers.d/$USER
+COPY docker-entrypoint.sh /home/mailer/
+RUN chmod 4755 /home/mailer/docker-entrypoint.sh
 USER $USER
 WORKDIR $HOME
 COPY requirements.txt .
 COPY mailer.py .
 RUN pip3 install -r requirements.txt --user
-CMD ["/home/mailer/mailer.py"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
